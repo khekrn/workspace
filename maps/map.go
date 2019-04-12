@@ -1,8 +1,9 @@
 package maps
 
 import (
-	"algorithms/iter"
 	"errors"
+
+	"github.com/khekrn/workspace/iter"
 )
 
 // Error codes

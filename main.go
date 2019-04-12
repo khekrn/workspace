@@ -1,8 +1,9 @@
 package main
 
 import (
-	"algorithms/maps/hashmap"
 	"fmt"
+
+	"github.com/khekrn/workspace/maps/hashmap"
 )
 
 func main() {

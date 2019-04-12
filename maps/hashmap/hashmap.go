@@ -1,9 +1,10 @@
 package hashmap
 
 import (
-	"algorithms/maps"
 	"fmt"
 	"strings"
+
+	"github.com/khekrn/workspace/maps"
 )
 
 const (
