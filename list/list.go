@@ -6,7 +6,7 @@ Package List high level methods
 
 package list
 
-import "algorithms/iter"
+import "github.com/khekrn/workspace/iter"
 
 // List interface
 type List interface {

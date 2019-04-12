@@ -44,6 +44,11 @@ func New(defaultCapacity int) *HashMap {
 		entryList: make([]*Entry, defaultCapacity), entrySize: 0}
 }
 
+// Length gives you the hashmap size
+func (h *HashMap) Length() int {
+	return h.entrySize
+}
+
 // Put insert's the given key and value into the hashmap
 func (h *HashMap) Put(key string, value interface{}) error {
 	if key == "" {
@@ -76,19 +81,82 @@ func (h *HashMap) Put(key string, value interface{}) error {
 	return nil
 }
 
+// Get returns value for the given key
+func (h *HashMap) Get(key string) (interface{}, error) {
+	if key == "" {
+		return nil, maps.ErrInvalidKey
+	}
+
+	keyIndex := h.hashFunc(key, h.mapSize)
+	entry := h.entryList[keyIndex]
+	for entry != nil {
+		if entry.key == key {
+			return entry.value, nil
+		}
+		entry = entry.next
+	}
+	return nil, maps.ErrKeyNotFound
+}
+
+// Delete remove's element from hashmap
+func (h *HashMap) Delete(key string) (bool, error) {
+	if key == "" {
+		return false, maps.ErrInvalidKey
+	}
+
+	keyIndex := h.hashFunc(key, h.mapSize)
+	entry := h.entryList[keyIndex]
+
+	previousEntry := entry
+	for entry != nil {
+		if entry.key == key {
+			if entry == previousEntry {
+				entry = entry.next
+			} else {
+				previousEntry.next = entry.next
+				entry = nil
+			}
+			h.entrySize--
+			return true, nil
+		}
+		previousEntry = entry
+		entry = entry.next
+	}
+	return false, maps.ErrKeyNotFound
+}
+
 func (h *HashMap) String() string {
 	var sb strings.Builder
 	sb.WriteString("{ ")
+	index := 0
 	for _, entry := range h.entryList {
 		tempEntry := entry
 		for tempEntry != nil {
+			if index > 0 {
+				sb.WriteString(", ")
+			}
 			sb.WriteString(tempEntry.key)
 			sb.WriteString(":")
 			sb.WriteString(fmt.Sprintf("%v", tempEntry.value))
-			sb.WriteString(", ")
 			tempEntry = tempEntry.next
+			index++
 		}
 	}
 	sb.WriteString(" }")
 	return sb.String()
+}
+
+func (h *HashMap) resize() {
+	if float64(h.entrySize)/float64(h.mapSize) >= loadFactor {
+		newSize := h.mapSize * 2
+		newEntryList := make([]*Entry, newSize)
+		for _, entry := range h.entryList {
+			if entry != nil {
+				index := h.hashFunc(entry.key, newSize)
+				newEntryList[index] = entry
+			}
+		}
+		h.mapSize = newSize
+		h.entryList = newEntryList
+	}
 }
