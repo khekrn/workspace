@@ -22,5 +22,5 @@ type Map interface {
 
 	Delete(key string) (bool, error)
 
-	Iter() iter.Iterator
+	Iter() iter.IteratorWithKey
 }

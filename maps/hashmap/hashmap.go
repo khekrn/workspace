@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/khekrn/workspace/iter"
 	"github.com/khekrn/workspace/maps"
 )
 
@@ -123,6 +124,11 @@ func (h *HashMap) Delete(key string) (bool, error) {
 		entry = entry.next
 	}
 	return false, maps.ErrKeyNotFound
+}
+
+// Iter returns iterator struct
+func (h *HashMap) Iter() iter.IteratorWithKey {
+	return NewIterator(h)
 }
 
 func (h *HashMap) String() string {
