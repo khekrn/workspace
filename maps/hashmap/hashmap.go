@@ -112,11 +112,11 @@ func (h *HashMap) Delete(key string) (bool, error) {
 	for entry != nil {
 		if entry.key == key {
 			if entry == previousEntry {
-				entry = entry.next
+				h.entryList[keyIndex] = entry.next
 			} else {
 				previousEntry.next = entry.next
-				entry = nil
 			}
+			entry = nil
 			h.entrySize--
 			return true, nil
 		}
