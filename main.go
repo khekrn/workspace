@@ -22,6 +22,13 @@ func main() {
 	fmt.Println(hashMap)
 	fmt.Println("Hash Map Size := ", hashMap.Length())
 
+	mapIter := hashMap.Iter()
+	for mapIter.HasNext() {
+		key := mapIter.Key()
+		value := mapIter.Value()
+		fmt.Println(key, " - ", value)
+	}
+
 	item, err := hashMap.Get("Alice")
 	fmt.Println("For Key Alice = ", item, err)
 	item, err = hashMap.Get("Teena")
@@ -34,4 +41,10 @@ func main() {
 	fmt.Println("Deleting Ta = ", res, err)
 	fmt.Println(hashMap)
 	fmt.Println("HashMap Size = ", hashMap.Length())
+	mapIter = hashMap.Iter()
+	for mapIter.HasNext() {
+		key := mapIter.Key()
+		value := mapIter.Value()
+		fmt.Println(key, " - ", value)
+	}
 }
