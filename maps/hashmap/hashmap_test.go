@@ -95,10 +95,26 @@ func BenchmarkMapPut(b *testing.B) {
 	}
 }
 
+func BenchmarkHashMapPutV2(b *testing.B) {
+	hashMap := New(1024)
+	for i := 0; i < b.N; i++ {
+		hashMap.Put(string(i), i)
+	}
+}
+
+func BenchmarkMapPutV2(b *testing.B) {
+	dict := make(map[string]interface{}, 1024)
+	for i := 0; i < b.N; i++ {
+		dict[string(i)] = i
+	}
+}
+
 func BenchmarkHashMapGet(b *testing.B) {
 	small := generateHashMap(100)
 	medium := generateHashMap(1000)
 	large := generateHashMap(10000)
+
+	b.ResetTimer()
 
 	for i := 0; i < 100; i++ {
 		small.Get(string(i))
@@ -118,6 +134,8 @@ func BenchmarkMapGet(b *testing.B) {
 	medium := generateMap(1000)
 	large := generateMap(10000)
 
+	b.ResetTimer()
+
 	for i := 0; i < 100; i++ {
 		_ = small[string(i)]
 	}
@@ -128,6 +146,47 @@ func BenchmarkMapGet(b *testing.B) {
 
 	for i := 0; i < 10000; i++ {
 		_ = large[string(i)]
+	}
+
+}
+
+func BenchmarkHashMapDelete(b *testing.B) {
+	small := generateHashMap(100)
+	medium := generateHashMap(1000)
+	large := generateHashMap(10000)
+
+	b.ResetTimer()
+
+	for i := 0; i < 100; i++ {
+		small.Delete(string(i))
+	}
+
+	for i := 0; i < 1000; i++ {
+		medium.Delete(string(i))
+	}
+
+	for i := 0; i < 10000; i++ {
+		large.Delete(string(i))
+	}
+}
+
+func BenchmarkMapDelete(b *testing.B) {
+	small := generateMap(100)
+	medium := generateMap(1000)
+	large := generateMap(10000)
+
+	b.ResetTimer()
+
+	for i := 0; i < 100; i++ {
+		delete(small, string(i))
+	}
+
+	for i := 0; i < 1000; i++ {
+		delete(medium, string(i))
+	}
+
+	for i := 0; i < 10000; i++ {
+		delete(large, string(i))
 	}
 
 }
