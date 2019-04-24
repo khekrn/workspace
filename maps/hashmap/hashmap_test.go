@@ -95,20 +95,6 @@ func BenchmarkMapPut(b *testing.B) {
 	}
 }
 
-func BenchmarkHashMapPutV2(b *testing.B) {
-	hashMap := New(1024)
-	for i := 0; i < b.N; i++ {
-		hashMap.Put(string(i), i)
-	}
-}
-
-func BenchmarkMapPutV2(b *testing.B) {
-	dict := make(map[string]interface{}, 1024)
-	for i := 0; i < b.N; i++ {
-		dict[string(i)] = i
-	}
-}
-
 func BenchmarkHashMapGet(b *testing.B) {
 	small := generateHashMap(100)
 	medium := generateHashMap(1000)
