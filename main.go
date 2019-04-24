@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/khekrn/workspace/maps/hashmap"
+	"github.com/khekrn/workspace/filters"
 )
 
 func main() {
@@ -47,4 +48,12 @@ func main() {
 		value := mapIter.Value()
 		fmt.Println(key, " - ", value)
 	}
+
+	bloom, _ := filters.NewBloomFilter(1000, 0.1)
+	
+	v1 := []byte{1, 2, 3, 4, 5}
+	bloom.Add((v1))
+	fmt.Println("\n\n\n")
+	fmt.Println(bloom.Contains(v1))
+	fmt.Println(bloom.Contains([]byte{10}))
 }
