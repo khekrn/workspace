@@ -2,17 +2,18 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/khekrn/workspace/maps/hashmap"
+	"github.com/khekrn/workspace/sort"
+	HashMap "github.com/khekrn/workspace/maps/hashmap"
 	"github.com/khekrn/workspace/filters"
 )
 
 func main() {
-	// arr := sort.GenerateSlice(10)
-	// res := sort.MergeSort(arr)
-	// fmt.Println("Unsorted = ", arr)
-	// fmt.Println("Sorted = ", res)
-	hashMap := hashmap.New(5)
+	arr := []int{1, 2, 3, 4, 5}
+	res := sort.InsertionSort(arr)
+	fmt.Println("Unsorted = ", arr)
+	fmt.Println("Sorted = ", res)
+	
+	hashMap := HashMap.New(5)
 	hashMap.Put("Alice", 10)
 	hashMap.Put("Bob", 20)
 	hashMap.Put("Teena", 18)
@@ -36,10 +37,6 @@ func main() {
 	fmt.Println("For Key Teena = ", item, err)
 	item, err = hashMap.Get("Ta")
 	fmt.Println("For Key Ta = ", item, err)
-	res, err := hashMap.Delete("Alice")
-	fmt.Println("Deleting Alice = ", res, err)
-	res, err = hashMap.Delete("Root")
-	fmt.Println("Deleting Root = ", res, err)
 	fmt.Println(hashMap)
 	fmt.Println("HashMap Size = ", hashMap.Length())
 	mapIter = hashMap.Iter()
