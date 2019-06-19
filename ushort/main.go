@@ -8,7 +8,7 @@ import (
 func main() {
 
 	mux := http.NewServeMux()
-	mux.HandleFunc("/encode", handlers.Encode())
+	mux.HandleFunc("/shorten", handlers.Encode())
 	mux.HandleFunc("/decode", handlers.Decode())
 
 }
