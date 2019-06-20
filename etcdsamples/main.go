@@ -10,6 +10,8 @@ import (
 	"go.etcd.io/etcd/clientv3"
 )
 
+// 1. Install go client package via - go get -v go.etcd.io/etcd/clientv3
+// 2. Download respective etcd package from github for windows or linux
 func main() {
 	cl, err := clientv3.New(clientv3.Config{
 		Endpoints:   []string{"localhost:2379", "localhost:22379", "localhost:32379"},
