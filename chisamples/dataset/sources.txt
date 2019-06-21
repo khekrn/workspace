@@ -1,0 +1,6 @@
+http://www.newzcone.com/
+
+TODO:
+=====
+
+- Use ferret to download news title from newzcone

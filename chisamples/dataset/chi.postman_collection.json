@@ -1,0 +1,81 @@
+{
+	"info": {
+		"_postman_id": "75dc5f0e-aca6-4f9a-ac67-518a71bb09c4",
+		"name": "chi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "wc",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\":\"{{Text}}\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9999/wc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9999",
+					"path": [
+						"wc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "token",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "10ec0961-0c9f-4d0d-976c-0b5b7b29053f",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"text\":\"{{Text}}\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9999/tokenize",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9999",
+					"path": [
+						"tokenize"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
