@@ -1,5 +1,3 @@
-Certainly! I'll walk you through the generated Go code and explain each part.
-
 package main
 
 This line specifies that the code belongs to the main package, which is the entry point for executing Go programs.
